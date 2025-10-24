@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Mercury",
+    "radius": 0.6,
+    "color": "#ff8300",
+    "emissive": "#4d2000",
+    "orbitRadius": 6,
+    "orbitSpeed": 0.7
+  },
+  {
+    "name": "Venus",
+    "radius": 0.9,
+    "color": "#0062ff",
+    "emissive": "#002a4d",
+    "orbitRadius": 9,
+    "orbitSpeed": 0.45
+  },
+  {
+    "name": "Earth",
+    "radius": 1,
+    "color": "#00ff22",
+    "emissive": "#083f00",
+    "orbitRadius": 12,
+    "orbitSpeed": 0.35
+  },
+  {
+    "name": "Mars",
+    "radius": 0.8,
+    "color": "#00f2ff",
+    "emissive": "#4d2000",
+    "orbitRadius": 15,
+    "orbitSpeed": 0.32
+  },
+  {
+    "name": "Jupiter",
+    "radius": 2.2,
+    "color": "#ff00cc",
+    "emissive": "#4d3d00",
+    "orbitRadius": 20,
+    "orbitSpeed": 0.2,
+    "hasRing": true,
+    "ringColor": "#d5c9a3"
+  }
+]
