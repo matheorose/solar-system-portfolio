@@ -61,7 +61,7 @@ const computeScreenFocusDistance = screen => {
   const heightDistance = (height / (2 * SCREEN_FIT_RATIO)) / Math.tan(verticalFov / 2);
   const widthDistance = (width / (2 * SCREEN_FIT_RATIO)) / Math.tan(horizontalFov / 2);
 
-  return Math.max(heightDistance, widthDistance) + 0.4;
+  return Math.max(heightDistance, widthDistance);
 };
 
 const updateControls = () => {
@@ -111,11 +111,13 @@ const focusOnBody = body => {
 
     screenNormal.set(0, 0, 1).applyQuaternion(tempQuaternion).normalize();
 
-    const distance = Math.max(computeScreenFocusDistance(screen), 0.6);
+    const rawDistance = computeScreenFocusDistance(screen);
+    const distance = Math.max(rawDistance, 0.25);
     tempPosition.copy(screenNormal).multiplyScalar(distance).add(tempTarget);
 
-    minDistance = distance * 0.75;
-    maxDistance = distance * 1.15;
+    minDistance = Math.max(distance * 0.7, 0.2);
+    minDistance = Math.min(minDistance, distance * 0.95);
+    maxDistance = Math.max(distance * 1.1, distance + 0.4);
     animationOptions = { duration: 1.2, targetEase: 'power2.out', cameraEase: 'power2.out' };
   } else {
     body.getWorldPosition(tempTarget);
@@ -135,7 +137,7 @@ const focusOnBody = body => {
     maxDistance = Math.max(focusDistance * 1.8, minDistance + 2);
   }
 
-  sceneManager.controls.minDistance = Math.max(minDistance, 0.5);
+  sceneManager.controls.minDistance = Math.max(minDistance, 0.2);
   sceneManager.controls.maxDistance = Math.max(maxDistance, sceneManager.controls.minDistance + 0.5);
   sceneManager.controls.enableRotate = !isScreenFocus;
   sceneManager.controls.enableZoom = !isScreenFocus;
